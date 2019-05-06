@@ -1,0 +1,68 @@
+<html>
+
+<head>
+  <title>HubSpot - シングルページアプリ トラッキングデモ</title>
+</head>
+
+<body style="margin: 2em" onhashchange="render()">
+  <h1>HubSpot - シングルページアプリ トラッキングデモ</h1>
+  <ul>
+    <li><a href="#1">ページ1</a></li>
+    <li><a href="#2">ページ2</a></li>
+    <li><a href="#3">ページ3</a></li>
+  </ul>
+  <div id="content" style="font-size: 2em;">
+    ここが変わります。
+  </div>
+  <br>
+  <div>
+    <span style="font-size: .5em">* 対象のメールアドレスでコンタクトを作成（既に存在する場合は更新）します</span>
+    <br>
+    <div>
+      <input type="text" id="email" value="" placeholder="Eメールアドレス" />
+    </div>
+    <div>
+      <input type="text" id="phone" value="" placeholder="電話番号" />
+    </div>
+    <br>
+    <input type="submit" value="コンタクトの作成" onclick="create()" />
+  </div>
+  <script>
+function render() {
+  var elem = document.getElementById('content');
+  switch (location.hash) {
+    case '#1':
+      elem.innerHTML = '<b style="color: red;">#1</b> のページを表示しました。';
+      document.title = "SPA トラッキングデモ - #1";
+      break;
+    case '#2':
+      elem.innerHTML = '<b style="color: red;">#2</b> のページを表示しました。';
+      document.title = "SPA トラッキングデモ - #2";
+      break;
+    case '#3':
+      elem.innerHTML = '<b style="color: red;">#3</b> のページを表示しました。';
+      document.title = "SPA トラッキングデモ - #3";
+      break;
+  }
+
+  // HubSpotのトラッキングコードAPIを実行
+  // 参考: https://developers.hubspot.com/docs/methods/tracking_code_api/track_page_view
+  _hsq.push(['setPath', location.hash]);
+  _hsq.push(['trackPageView']);
+}
+
+    function create() {
+      // HubSpotのコンタクトを作成（or 更新）
+      // 参考: https://developers.hubspot.com/docs/methods/tracking_code_api/identify_visitor
+      _hsq.push(["identify", {
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value
+      }]);
+      _hsq.push(['trackPageView']);
+    }
+  </script>
+  <!-- HubSpotトラッキングコード -->
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4148814.js"></script>
+</body>
+
+</html>

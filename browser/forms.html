@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Forms API Example</title>
+  <!-- Start of HubSpot Embed Code -->
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4148814.js"></script>
+  <!-- End of HubSpot Embed Code -->
+  <script
+    src="https://code.jquery.com/jquery-1.12.4.min.js"
+    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+    crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  // Cookieの値を取得する汎用関数
+  window.getCookie = function (name) {
+    var nameEQ = name + "="
+    var ca = document.cookie.split(";")
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i]
+      while (c.charAt(0) == " ") c = c.substring(1, c.length)
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length)
+    }
+    return null
+  }
+
+  window.onClickSubmit = function () {
+    if ($("[name=type]:checked").val() === "Ajax") {
+    $.ajax({
+      url: "https://api.hsforms.com/submissions/v3/integration/submit/4148814/ad9898b1-0ac4-4a99-bdc9-f879c0e05f48",
+      type:"POST",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data : JSON.stringify({
+        fields: [
+          {
+            name: "lastname",
+            value: $("[name=lastname]").val()
+          },
+          {
+            name: "firstname",
+            value: $("[name=firstname]").val()
+          },
+          {
+            name: "email",
+            value: $("[name=email]").val()
+          },
+          {
+            name: "phone",
+            value: $("[name=phone]").val()
+          }
+        ],
+        context: {
+          hutk: getCookie("hubspotutk"),
+          pageUri: window.location.href,
+          pageName: document.title
+        }
+      }),
+    }).done(function(res) {
+      console.log(res)
+    })
+    } else {
+      document.myform.submit();
+    }
+  }
+  </script>
+</head>
+<body>
+  <div style="margin:1em;">
+    <h1>Forms API サンプル</h1>
+    <form name="myform" method="POST" onsubmit="return false">
+      <div>
+        <input type="text" name="lastname" value="" placeholder="姓">
+        <input type="text" name="firstname" value="" placeholder="名">
+      </div>
+      <div>
+        <input type="text" name="email" value="" placeholder="Eメール">
+      </div>
+      <div>
+        <input type="text" name="phone" value="" placeholder="電話番号">
+      </div>
+      <br>
+      <div>
+        <input type="radio" name="type" value="Ajax" checked>Ajax版</input>
+        <input type="radio" name="type" value="Server">サーバーサイド版</input>
+      </div>
+      <br>
+      <div>
+        <input type="submit" value="送信" onclick="onClickSubmit()">
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>
