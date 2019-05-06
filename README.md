@@ -45,7 +45,7 @@ appディレクトリ配下の.envファイルにHubSpotアプリの値を追加
     $ yarn start
     > [2019-04-28T23:59:44.055] [INFO] app - Listening on http://localhost:3000
 
-ブラウザで「http://localhost:3000/install」を開き、アプリをインストールして下さい。
+ブラウザで http://localhost:3000/install を開き、アプリをインストールして下さい。
 
 ### エンドポイントURL
 
