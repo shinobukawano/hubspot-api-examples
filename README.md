@@ -23,7 +23,7 @@
 
 ターミナルでコマンドを入力してスクリプトを実行します
 
-    node scripts/contacts.js create
+    $ node scripts/contacts.js create
 
 ## アプリ利用手順
 
@@ -37,6 +37,7 @@ appディレクトリ配下の.envファイルにHubSpotアプリの値を追加
     APP_ID='XXXXXX'
     APP_CLIENT_ID='XXXXXXX'
     APP_CLIENT_SECRET='XXXXXXX'
+    EVENT_TYPE_ID='XXXXXX'
     SERVER_URL='http://localhost:3000'
 
 ターミナルからアプリを起動します
