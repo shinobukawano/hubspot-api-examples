@@ -80,7 +80,7 @@ HerokuにアプリをデプロイするためのGitリポジトリを作成
 
     $ heroku create ${your_favorite_app_name}
     > Creating ⬢ hubspot-api-sample-app... done
-    > https://myapp.herokuapp.com/ | https://git.heroku.com/apac-se-offsite.git
+    > https://myapp.herokuapp.com/ | https://git.heroku.com/hubspot-api-sample-app.git
 
 MongoDBアドオンを追加
 
