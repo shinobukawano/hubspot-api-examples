@@ -10,6 +10,7 @@ require("dotenv").config({
 const APP_ID = process.env.APP_ID
 const CLIENT_ID = process.env.APP_CLIENT_ID
 const CLIENT_SECRET = process.env.APP_CLIENT_SECRET
+const EVENT_TYPE_ID = process.env.EVENT_TYPE_ID
 const SERVER_URL = process.env.SERVER_URL
 
 const SCOPES = [
@@ -158,7 +159,7 @@ router.put("/hubid/:hubId/timeline/:email", async (req, res) => {
     }
     const account = await db.findAccount(selector)
     if (account) {
-      await hs.createTimelineEvent(email, APP_ID, "389949", account.accessToken)
+      await hs.createTimelineEvent(email, APP_ID, EVENT_TYPE_ID, account.accessToken)
       res.json({
         hubId,
         email,
