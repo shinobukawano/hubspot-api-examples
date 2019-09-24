@@ -26,39 +26,39 @@
 
   window.onClickSubmit = function () {
     if ($("[name=type]:checked").val() === "Ajax") {
-    $.ajax({
-      url: "https://api.hsforms.com/submissions/v3/integration/submit/4148814/ad9898b1-0ac4-4a99-bdc9-f879c0e05f48",
-      type:"POST",
-      dataType: "json",
-      contentType: "application/json; charset=UTF-8",
-      data : JSON.stringify({
-        fields: [
-          {
-            name: "lastname",
-            value: $("[name=lastname]").val()
-          },
-          {
-            name: "firstname",
-            value: $("[name=firstname]").val()
-          },
-          {
-            name: "email",
-            value: $("[name=email]").val()
-          },
-          {
-            name: "phone",
-            value: $("[name=phone]").val()
+      $.ajax({
+        url: "https://api.hsforms.com/submissions/v3/integration/submit/4148814/ad9898b1-0ac4-4a99-bdc9-f879c0e05f48",
+        type:"POST",
+        dataType: "json",
+        contentType: "application/json; charset=UTF-8",
+        data : JSON.stringify({
+          fields: [
+            {
+              name: "lastname",
+              value: $("[name=lastname]").val()
+            },
+            {
+              name: "firstname",
+              value: $("[name=firstname]").val()
+            },
+            {
+              name: "email",
+              value: $("[name=email]").val()
+            },
+            {
+              name: "phone",
+              value: $("[name=phone]").val()
+            }
+          ],
+          context: {
+            hutk: getCookie("hubspotutk"),
+            pageUri: window.location.href,
+            pageName: document.title
           }
-        ],
-        context: {
-          hutk: getCookie("hubspotutk"),
-          pageUri: window.location.href,
-          pageName: document.title
-        }
-      }),
-    }).done(function(res) {
-      console.log(res)
-    })
+        }),
+      }).done(function(res) {
+        console.log(res)
+      })
     } else {
       document.myform.submit();
     }
